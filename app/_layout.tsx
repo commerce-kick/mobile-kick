@@ -17,10 +17,9 @@ import {
 } from "@tanstack/react-query";
 import { StatusBar } from "expo-status-bar";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { Platform } from "react-native";
+import { Platform, useColorScheme } from "react-native";
 import { salesforceStore$ } from "~/integrations/salesforce/store";
 import { NAV_THEME } from "~/lib/constants";
-import { useColorScheme } from "~/lib/useColorSchema";
 
 import { KeyboardProvider } from "react-native-keyboard-controller";
 
@@ -92,7 +91,7 @@ const RootComponent = () => {
 
 export default function RootLayout() {
   const hasMounted = useRef(false);
-  const { isDarkColorScheme } = useColorScheme();
+  const schema = useColorScheme();
   const [isColorSchemeLoaded, setIsColorSchemeLoaded] = useState(false);
 
   const queryClient = new QueryClient({
@@ -142,8 +141,8 @@ export default function RootLayout() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <KeyboardProvider>
-        <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
-          <StatusBar style={isDarkColorScheme ? "light" : "dark"} />
+        <ThemeProvider value={schema === "dark" ? DARK_THEME : LIGHT_THEME}>
+          <StatusBar style="auto" />
           <QueryClientProvider client={queryClient}>
             <RootComponent />
             <Toaster />

@@ -1,7 +1,6 @@
 import { FlashList } from "@shopify/flash-list";
 import { useQuery } from "@tanstack/react-query";
 import { router, useLocalSearchParams } from "expo-router";
-import { cssInterop } from "nativewind";
 import { useState } from "react";
 import { ScrollView, View } from "react-native";
 import { Drawer } from "react-native-drawer-layout";
@@ -24,11 +23,12 @@ import {
   serializeSearchParams,
   type PLPSearchParams,
 } from "~/lib/commerce/url-params";
+
+import { withUniwind } from "uniwind";
+
 import { REQUESTED_LIMIT } from "~/lib/constants";
 
-const StyledDrawer = cssInterop(Drawer, {
-  className: "drawerStyle",
-});
+const StyledDrawer = withUniwind(Drawer);
 
 export default function CategoryPage() {
   const params = useLocalSearchParams();
@@ -228,7 +228,6 @@ export default function CategoryPage() {
           );
         }}
         numColumns={2}
-        estimatedItemSize={315}
         renderItem={({ item }) => {
           return (
             <ProductHit

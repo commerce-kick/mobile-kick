@@ -1,12 +1,10 @@
 import { Image as ExImage } from "expo-image";
-import { cssInterop } from "nativewind";
 import { ComponentPropsWithoutRef } from "react";
+import { withUniwind } from "uniwind";
 
 const blurhash = "LKO2?U%2Tw=w]~RBVZRi};RPxuwH";
 
-const StyledImage = cssInterop(ExImage, {
-  className: "style",
-});
+const StyledImage = withUniwind(ExImage);
 
 export default function Image(
   props: ComponentPropsWithoutRef<typeof StyledImage>,

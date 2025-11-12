@@ -9,9 +9,10 @@ import {
     ShopperProducts,
     ShopperPromotions,
     ShopperSearch,
-    ShopperSeo,
+    ShopperSEO,
     ShopperStores,
 } from "commerce-sdk-isomorphic";
+
 import type { SalesforceCommerceClient } from "~/integrations/salesforce/client";
 
 export class SalesforceAPI {
@@ -115,7 +116,7 @@ export class SalesforceAPI {
   }
 
   async shopperSeo() {
-    return this.getClient<ShopperSeo<any>>(ShopperSeo, "shopperSeo");
+    return this.getClient<ShopperSEO<any>>(ShopperSEO, "shopperSeo");
   }
 
   async shopperStores() {

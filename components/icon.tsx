@@ -1,11 +1,9 @@
 import { Ionicons } from "@expo/vector-icons";
-import { cssInterop } from "nativewind";
 import { ComponentPropsWithoutRef } from "react";
+import { withUniwind } from "uniwind";
 import { cn } from "~/lib/utils";
 
-const StyledIcon = cssInterop(Ionicons, {
-  className: "style",
-});
+const StyledIcon = withUniwind(Ionicons);
 
 export default function Icon({
   size = 18,

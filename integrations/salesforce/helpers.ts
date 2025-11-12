@@ -65,9 +65,11 @@ export async function loginAsGuest(
     true
   );
 
+
+
   const params = new URL(response.url);
 
-  const body: ShopperLoginTypes.TokenRequest = {
+  const body: ShopperLoginTypes.TokenResponse = {
     client_id: shopperLogin.clientConfig.parameters.clientId,
     channel_id: shopperLogin.clientConfig.parameters.siteId,
     code: params.searchParams.get("code")!,
@@ -76,7 +78,7 @@ export async function loginAsGuest(
     redirect_uri: redirect_uri,
     usid: params.searchParams.get("usid")!,
   };
-
+  
   const url = getURL(shopperLogin.clientConfig.parameters.shortCode);
 
   const formData = new URLSearchParams();
@@ -95,7 +97,11 @@ export async function loginAsGuest(
     }
   );
 
+
+  
   const data = await tokenResponse.json();
+
+  console.log(data)
 
   return data;
 }
@@ -177,7 +183,7 @@ export async function loginRegisteredUserB2C(
       },
     }
   );
-
+  
   const data = await tokenResponse.json();
 
   return data;
@@ -190,6 +196,9 @@ export async function refreshAccessToken(
     dnt?: boolean;
   }
 ): Promise<ShopperLoginTypes.TokenResponse> {
+
+  console.log('refresssh');
+
   const body = {
     grant_type: "refresh_token",
     refresh_token: parameters.refreshToken,
