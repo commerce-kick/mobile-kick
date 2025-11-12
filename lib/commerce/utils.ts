@@ -40,7 +40,8 @@ export function normalizeProduct(product: ProductLike): NormalizedProduct {
       id: searchHit.productId,
       name: searchHit.productName || `Product ${searchHit.productId}`,
       image:
-        searchHit.image?.link || searchHit.imageGroups?.[0]?.images?.[0]?.link,
+        searchHit.image?.disBaseLink ||
+        searchHit.imageGroups?.[0]?.images?.[0]?.disBaseLink,
       imageAlt: searchHit.image?.alt || searchHit.productName,
       price: searchHit.price,
       priceMax: searchHit.priceMax,

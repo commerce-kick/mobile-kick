@@ -1,9 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { router, useLocalSearchParams } from "expo-router";
+import { ChevronLeft } from "lucide-react-native";
 import { ScrollView, View } from "react-native";
 import EmptyHero from "~/components/commerce/empty-hero";
-import Icon from "~/components/icon";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
+import Icon from "~/components/ui/icon";
 import { Separator } from "~/components/ui/separator";
 import { Skeleton } from "~/components/ui/skeleton";
 import { Text } from "~/components/ui/text";
@@ -18,7 +19,7 @@ export default function OrderPage() {
     return (
       <View className="flex flex-1 p-4">
         <View className="mb-4 flex flex-row items-center">
-          <Icon name="chevron-back" size={24} onPress={() => router.back()} />
+          <Icon as={ChevronLeft} size={24} onPress={() => router.back()} />
           <Skeleton className="ml-2 h-6 w-1/2" pulse />
         </View>
         <Separator className="mb-4" />

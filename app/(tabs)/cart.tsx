@@ -7,13 +7,14 @@ import type {
 import currency from "currency.js";
 import { router } from "expo-router";
 import { isEmpty } from "lodash";
+import { AlertCircle, CreditCard, Trash } from "lucide-react-native";
 import { ActivityIndicator, Alert, ScrollView, View } from "react-native";
 import EmptyHero from "~/components/commerce/empty-hero";
 import { QuantitySelector } from "~/components/commerce/quantity-selector";
-import Icon from "~/components/icon";
 import Image from "~/components/image";
 import { Button } from "~/components/ui/button";
 import { Card, CardContent } from "~/components/ui/card";
+import Icon from "~/components/ui/icon";
 import { Separator } from "~/components/ui/separator";
 import { Text } from "~/components/ui/text";
 import { H1, H2, H4, Muted } from "~/components/ui/typography";
@@ -202,12 +203,12 @@ const BasketItem = ({ product, basketId, ...item }: BasketItemProps) => {
           {/* Product Image */}
           <View className="relative">
             <Image
-              className="aspect-square w-24 rounded-lg border border-border"
+              className="border-border aspect-square w-24 rounded-lg border"
               source={productImage}
               accessibilityLabel={`Image of ${product?.name || "product"}`}
             />
             {isUpdating && (
-              <View className="absolute inset-0 items-center justify-center rounded-lg bg-background/80">
+              <View className="bg-background/80 absolute inset-0 items-center justify-center rounded-lg">
                 <ActivityIndicator size="small" />
               </View>
             )}
@@ -228,7 +229,7 @@ const BasketItem = ({ product, basketId, ...item }: BasketItemProps) => {
                 accessibilityLabel="Remove item from cart"
                 className="h-8 w-8"
               >
-                <Icon name="trash" className="text-destructive" size={16} />
+                <Icon as={Trash} className="text-destructive" size={16} />
               </Button>
             </View>
 
@@ -241,7 +242,7 @@ const BasketItem = ({ product, basketId, ...item }: BasketItemProps) => {
               >
                 <View className="flex-row gap-2">
                   {variations.map(({ key, display }) => (
-                    <View key={key} className="rounded bg-muted px-2 py-1">
+                    <View key={key} className="bg-muted rounded px-2 py-1">
                       <Muted className="text-xs">{display}</Muted>
                     </View>
                   ))}
@@ -276,7 +277,7 @@ const BasketItem = ({ product, basketId, ...item }: BasketItemProps) => {
 const CartLoading = () => (
   <View className="flex-1 items-center justify-center">
     <ActivityIndicator size="large" />
-    <Text className="mt-4 text-muted-foreground">Loading your cart...</Text>
+    <Text className="text-muted-foreground mt-4">Loading your cart...</Text>
   </View>
 );
 
@@ -339,9 +340,9 @@ export default function CartPage() {
   if (basketError || productsError) {
     return (
       <View className="flex-1 items-center justify-center px-6">
-        <Icon name="alert-circle" size={64} className="mb-4 text-destructive" />
+        <Icon as={AlertCircle} size={64} className="text-destructive mb-4" />
         <H1 className="mb-2 text-center">Something went wrong</H1>
-        <Text className="mb-6 text-center text-muted-foreground">
+        <Text className="text-muted-foreground mb-6 text-center">
           Unable to load your cart. Please try again.
         </Text>
         <Button onPress={() => router.back()}>
@@ -357,11 +358,10 @@ export default function CartPage() {
   }
 
   return (
-    <View className="flex-1 bg-background">
+    <View className="bg-background flex-1">
       <FlashList
         data={enhancedItems}
         renderItem={renderItem}
-        estimatedItemSize={ESTIMATED_ITEM_SIZE}
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={() => <CartSummary basket={basket} />}
         contentContainerStyle={{ paddingTop: 16 }}
@@ -371,7 +371,7 @@ export default function CartPage() {
       />
 
       {/* Checkout Section */}
-      <View className="safe-area-bottom border-t border-border bg-background p-4">
+      <View className="safe-area-bottom border-border bg-background border-t p-4">
         <View className="mb-4 flex-row items-center justify-between">
           <Text className="text-lg font-semibold">Total</Text>
           <Text className="text-xl font-bold">
@@ -386,7 +386,11 @@ export default function CartPage() {
           accessibilityLabel="Proceed to checkout"
         >
           <View className="flex-row items-center gap-2">
-            <Icon name="card" size={20} className="text-primary-foreground" />
+            <Icon
+              as={CreditCard}
+              size={20}
+              className="text-primary-foreground"
+            />
             <Text className="font-semibold">Proceed to Checkout</Text>
           </View>
         </Button>

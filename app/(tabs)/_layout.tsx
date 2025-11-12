@@ -1,9 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { router, Tabs } from "expo-router";
-import {
-  Pressable
-} from "react-native";
-import Icon from "~/components/icon";
+import { Heart, Home, Search, ShoppingBasket, User } from "lucide-react-native";
+import { Pressable } from "react-native";
+import Icon from "~/components/ui/icon";
 import { AuthTypes } from "~/integrations/salesforce/enums";
 import { getBasketQueryOptions } from "~/integrations/salesforce/options/basket";
 import { getCustomerQueryOptions } from "~/integrations/salesforce/options/customer";
@@ -21,11 +20,7 @@ export default function TabsLayout() {
           headerShown: false,
           title: "(drawer)",
           tabBarIcon: ({ size, color, focused }) => (
-            <Icon
-              name={focused ? "home" : "home-outline"}
-              size={size}
-              color={color}
-            />
+            <Icon as={Home} size={size} color={color} />
           ),
           tabBarButton: ({ onPress, ...props }) => {
             return (
@@ -47,11 +42,7 @@ export default function TabsLayout() {
         options={{
           title: "Search",
           tabBarIcon: ({ size, color, focused }) => (
-            <Icon
-              name={focused ? "search" : "search-outline"}
-              size={size}
-              color={color}
-            />
+            <Icon as={Search} size={size} color={color} />
           ),
         }}
       />
@@ -69,11 +60,7 @@ export default function TabsLayout() {
         options={{
           title: "Wislist",
           tabBarIcon: ({ size, color, focused }) => (
-            <Icon
-              name={focused ? "heart" : "heart-outline"}
-              size={size}
-              color={color}
-            />
+            <Icon as={Heart} size={size} color={color} />
           ),
         }}
       />
@@ -83,11 +70,7 @@ export default function TabsLayout() {
         options={{
           title: "Cart",
           tabBarIcon: ({ size, color, focused }) => (
-            <Icon
-              name={focused ? "basket" : "basket-outline"}
-              size={size}
-              color={color}
-            />
+            <Icon as={ShoppingBasket} size={size} color={color} />
           ),
           tabBarBadge: basket?.productItems?.length || undefined,
         }}
@@ -99,11 +82,7 @@ export default function TabsLayout() {
         options={{
           title: "Profile",
           tabBarIcon: ({ size, color, focused }) => (
-            <Icon
-              name={focused ? "people" : "people-outline"}
-              size={size}
-              color={color}
-            />
+            <Icon as={User} size={size} color={color} />
           ),
         }}
       />
@@ -114,11 +93,7 @@ export default function TabsLayout() {
         options={{
           title: "Login",
           tabBarIcon: ({ size, color, focused }) => (
-            <Icon
-              name={focused ? "people" : "people-outline"}
-              size={size}
-              color={color}
-            />
+            <Icon as={User} size={size} color={color} />
           ),
         }}
       />

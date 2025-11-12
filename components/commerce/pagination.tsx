@@ -1,5 +1,6 @@
+import { ChevronLeft, ChevronRight, EllipsisVertical } from "lucide-react-native"
 import { TouchableOpacity, View } from "react-native"
-import Icon from "~/components/icon"
+import Icon from "~/components/ui/icon"
 import { Skeleton } from "~/components/ui/skeleton"
 import { Text } from "~/components/ui/text"
 import { PLPSearchParams } from "~/lib/commerce/url-params"
@@ -148,7 +149,7 @@ export function Pagination({
           )}
           activeOpacity={0.7}
         >
-          <Icon name="chevron-back" size={16} className="text-foreground" />
+          <Icon as={ChevronLeft} size={16} className="text-foreground" />
           <Text className="text-sm font-medium">Previous</Text>
         </TouchableOpacity>
 
@@ -158,7 +159,7 @@ export function Pagination({
             <View key={index}>
               {page === "ellipsis" ? (
                 <View className="flex items-center justify-center w-9 h-9">
-                  <Icon name="ellipsis-horizontal" size={16} className="text-muted-foreground" />
+                  <Icon as={EllipsisVertical} size={16} className="text-muted-foreground" />
                 </View>
               ) : (
                 <TouchableOpacity
@@ -194,7 +195,7 @@ export function Pagination({
           activeOpacity={0.7}
         >
           <Text className="text-sm font-medium">Next</Text>
-          <Icon name="chevron-forward" size={16} className="text-foreground" />
+          <Icon as={ChevronRight} size={16} className="text-foreground" />
         </TouchableOpacity>
       </View>
 

@@ -2,13 +2,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useQuery } from "@tanstack/react-query";
 import { randomUUID } from "expo-crypto";
 import { router, useLocalSearchParams } from "expo-router";
+import { X } from "lucide-react-native";
 import { Controller, useForm } from "react-hook-form";
 import { View } from "react-native";
 import { z } from "zod";
 import AvoidingBlur from "~/components/avoiding-blur";
-import Icon from "~/components/icon";
 import KeyboardView from "~/components/keyboard-view";
 import { Button } from "~/components/ui/button";
+import Icon from "~/components/ui/icon";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 import { Skeleton } from "~/components/ui/skeleton";
@@ -127,7 +128,7 @@ export default function CustomerAddressDetail() {
             {isNew ? "Add New Address" : "Edit Address"}
           </Text>
           <Button variant="ghost" onPress={() => router.back()}>
-            <Icon name="close" size={20} />
+            <Icon as={X} size={20} />
           </Button>
         </View>
         <View className="gap-4 px-4 pb-32 pt-4">

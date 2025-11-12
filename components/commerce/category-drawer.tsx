@@ -1,15 +1,14 @@
-import { Ionicons } from "@expo/vector-icons";
 import { type DrawerContentComponentProps } from "@react-navigation/drawer";
 import { useQuery } from "@tanstack/react-query";
 import { router } from "expo-router";
-import { ComponentPropsWithoutRef } from "react";
+import { ChevronRight, Home, LucideIcon } from "lucide-react-native";
 import { ScrollView, TouchableOpacity, View } from "react-native";
-import Icon from "~/components/icon";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from "~/components/ui/collapsible";
+import Icon from "~/components/ui/icon";
 import { Separator } from "~/components/ui/separator";
 import { Skeleton } from "~/components/ui/skeleton";
 import { Text } from "~/components/ui/text";
@@ -19,7 +18,7 @@ import { cn } from "~/lib/utils";
 
 interface DrawerItemProps {
   label: string;
-  icon?: ComponentPropsWithoutRef<typeof Ionicons>["name"];
+  icon?: LucideIcon;
   onPress: () => void;
   isSubItem?: boolean;
 }
@@ -40,7 +39,7 @@ const DrawerItem = ({
       activeOpacity={0.7}
     >
       {icon && !isSubItem && (
-        <Icon name={icon} size={20} className="text-muted-foreground" />
+        <Icon as={icon} size={20} className="text-muted-foreground" />
       )}
       <Text
         className={cn(
@@ -52,7 +51,7 @@ const DrawerItem = ({
       </Text>
       {!isSubItem && (
         <Icon
-          name="chevron-forward"
+          as={ChevronRight}
           size={16}
           className="text-muted-foreground"
         />
@@ -100,7 +99,7 @@ export const CategoryDrawer = (props: DrawerContentComponentProps) => {
         <View className="py-4">
           <DrawerItem
             label="Home"
-            icon="home"
+            icon={Home}
             onPress={() => {
               router.push("/");
               props.navigation.closeDrawer();
@@ -148,7 +147,7 @@ export const CategoryDrawer = (props: DrawerContentComponentProps) => {
                     </Text>
                     {hasSubcategories && (
                       <Icon
-                        name="chevron-forward"
+                        as={ChevronRight}
                         size={16}
                         className="text-muted-foreground"
                       />

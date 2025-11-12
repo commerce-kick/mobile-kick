@@ -1,17 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
 import { ScrollView, View } from "react-native";
 import HorizontalProducts from "~/components/commerce/horizontal-products";
-import Icon from "~/components/icon";
 import { H1, H3 } from "~/components/ui/typography";
 import getProductRecsQueryOptions from "~/integrations/salesforce/options/einstein";
 
 import { ExtensionStorage } from "@bacons/apple-targets";
 import { DrawerActions } from "@react-navigation/native";
 import { router, useNavigation } from "expo-router";
+import { Heart } from "lucide-react-native";
 import { useEffect } from "react";
 import { PageRenderer } from "~/components/experience/page-render";
 import Loading from "~/components/loading";
 import { Button } from "~/components/ui/button";
+import Icon from "~/components/ui/icon";
 import { Text } from "~/components/ui/text";
 import useRootCategories from "~/hooks/use-root-categories";
 import { getPageQueryOptions } from "~/integrations/salesforce/options/experience";
@@ -61,9 +62,9 @@ export default function Index() {
 
   return (
     <ScrollView>
-      <View className="flex aspect-square w-full items-center justify-center bg-secondary">
+      <View className="bg-secondary flex aspect-square w-full items-center justify-center">
         <H3>
-          Made with <Icon name="heart" className="text-destructive" /> and Expo
+          Made with <Icon as={Heart} className="text-destructive" /> and Expo
         </H3>
       </View>
 

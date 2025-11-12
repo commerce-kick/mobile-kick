@@ -9,7 +9,6 @@ import { HeaderSkeleton } from "~/components/commerce/header-skeleton";
 import { Pagination } from "~/components/commerce/pagination";
 import ProductHit from "~/components/commerce/product-hit";
 import { ProductGridSkeleton } from "~/components/commerce/product-skeleton";
-import Icon from "~/components/icon";
 import { Badge } from "~/components/ui/badge";
 import { Button } from "~/components/ui/button";
 import { Skeleton } from "~/components/ui/skeleton";
@@ -26,6 +25,8 @@ import {
 
 import { withUniwind } from "uniwind";
 
+import { RotateCcw, Search } from "lucide-react-native";
+import Icon from "~/components/ui/icon";
 import { REQUESTED_LIMIT } from "~/lib/constants";
 
 const StyledDrawer = withUniwind(Drawer);
@@ -170,7 +171,7 @@ export default function CategoryPage() {
           return (
             <View className="flex-1 items-center justify-center px-6 py-20">
               <Icon
-                name="search"
+                as={Search}
                 size={48}
                 className="mb-6 text-muted-foreground"
               />
@@ -185,7 +186,7 @@ export default function CategoryPage() {
                 onPress={handleClearFilters}
                 className="min-w-[180px]"
               >
-                <Icon name="refresh" size={16} className="mr-2" />
+                <Icon as={RotateCcw} size={16} className="mr-2" />
                 <Text>Clear Filters</Text>
               </Button>
             </View>

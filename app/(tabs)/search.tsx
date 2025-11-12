@@ -4,14 +4,15 @@ import { ShopperProductsTypes } from "commerce-sdk-isomorphic";
 import currency from "currency.js";
 import { router } from "expo-router";
 import { debounce } from "lodash";
+import { ChevronRight } from "lucide-react-native";
 import { useState } from "react";
 import { TouchableOpacity, TouchableOpacityProps, View } from "react-native";
 import AvoidingBlur from "~/components/avoiding-blur";
 import AnimatedStateView from "~/components/commerce/animated-state-view";
 import EmptyHero from "~/components/commerce/empty-hero";
-import Icon from "~/components/icon";
 import Image from "~/components/image";
 import HorizontalList from "~/components/skeletons/horizontal-items-skeleton";
+import Icon from "~/components/ui/icon";
 import { Input } from "~/components/ui/input";
 import { H4, P } from "~/components/ui/typography";
 import { getProductsByIdsQueryOptions } from "~/integrations/salesforce/options/products";
@@ -46,7 +47,7 @@ const SearchResult = ({
           <P>{currency(normalize.price || 0).format()}</P>
         </View>
       </View>
-      <Icon name="arrow-forward" size={22} />
+      <Icon as={ChevronRight} size={22} />
     </TouchableOpacity>
   );
 };
@@ -96,7 +97,7 @@ export default function SearchPage() {
       >
         <FlashList
           data={data?.productSuggestions?.products}
-          estimatedItemSize={100}
+          keyboardDismissMode="on-drag"
           renderItem={({ item }) => {
             const product = products.find((p) => p.id === item.productId);
 

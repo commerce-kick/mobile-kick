@@ -1,11 +1,12 @@
 import { FlashList } from "@shopify/flash-list";
 import { useQuery } from "@tanstack/react-query";
 import { router, useLocalSearchParams } from "expo-router";
+import { ChevronRight } from "lucide-react-native";
 import { TouchableOpacity, View } from "react-native";
 import EmptyHero from "~/components/commerce/empty-hero";
 import { Pagination } from "~/components/commerce/pagination";
-import Icon from "~/components/icon";
 import HorizontalList from "~/components/skeletons/horizontal-items-skeleton";
+import Icon from "~/components/ui/icon";
 import { Separator } from "~/components/ui/separator";
 import { Text } from "~/components/ui/text";
 import { getCustomerOrdersQueryOptions } from "~/integrations/salesforce/options/customer";
@@ -64,7 +65,7 @@ export default function CustomerOrders() {
                     {item.orderTotal ? `$${item.orderTotal.toFixed(2)}` : "N/A"}
                   </Text>
                 </View>
-                <Icon name="chevron-forward" size={20} />
+                <Icon as={ChevronRight} size={20} />
               </View>
             </TouchableOpacity>
           );

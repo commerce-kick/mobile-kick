@@ -1,4 +1,5 @@
 import currency from "currency.js";
+import { Heart } from "lucide-react-native";
 import { useState } from "react";
 import {
   GestureResponderEvent,
@@ -6,9 +7,9 @@ import {
   TouchableOpacityProps,
   View,
 } from "react-native";
-import Icon from "~/components/icon";
 import Image from "~/components/image";
 import { Button } from "~/components/ui/button";
+import Icon from "~/components/ui/icon";
 import { H4, Muted } from "~/components/ui/typography";
 import { normalizeProduct, ProductLike } from "~/lib/commerce/utils";
 import { cn } from "~/lib/utils";
@@ -62,11 +63,11 @@ export default function ProductHit({
           <Button
             size="icon"
             onPress={handleWishlistToggle}
-            className="absolute right-4 top-4"
+            className="absolute top-4 right-4"
           >
             <Icon
-              name={isWishlisted ? "heart" : "heart-outline"}
-              className="text-destructive"
+              as={Heart}
+              className={cn("text-white", isWishlisted && "fill-white")}
             />
           </Button>
         )}

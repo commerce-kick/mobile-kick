@@ -1,11 +1,12 @@
 import { FlashList } from "@shopify/flash-list";
 import { useQuery } from "@tanstack/react-query";
 import { router } from "expo-router";
+import { ChevronRight, Plus } from "lucide-react-native";
 import { TouchableOpacity, View } from "react-native";
 import AnimatedStateView from "~/components/commerce/animated-state-view";
 import EmptyHero from "~/components/commerce/empty-hero";
-import Icon from "~/components/icon";
 import HorizontalItemsSkeleton from "~/components/skeletons/horizontal-items-skeleton";
+import Icon from "~/components/ui/icon";
 import { Separator } from "~/components/ui/separator";
 import { Text } from "~/components/ui/text";
 import { getCustomerQueryOptions } from "~/integrations/salesforce/options/customer";
@@ -51,7 +52,7 @@ export default function CustomerAddresses() {
               onPress={() => router.push(`/customer/address/create?mode=new`)}
               className="mt-2 flex flex-row items-center"
             >
-              <Icon name="add" size={16} />
+              <Icon as={Plus} size={16} />
               <Text className="ml-1 text-base">Add New Address</Text>
             </TouchableOpacity>
           </View>
@@ -79,7 +80,7 @@ export default function CustomerAddresses() {
                         {item.countryCode}
                       </Text>
                     </View>
-                    <Icon name="chevron-forward" size={20} />
+                    <Icon as={ChevronRight} size={20} />
                   </View>
                 </TouchableOpacity>
               );

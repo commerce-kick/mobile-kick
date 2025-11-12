@@ -2,9 +2,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useQuery } from "@tanstack/react-query";
 import { ShopperCustomersTypes } from "commerce-sdk-isomorphic";
 import { Redirect, router } from "expo-router";
+import {
+  CreditCard,
+  Home,
+  LogOut,
+  ShoppingBasket,
+  User,
+} from "lucide-react-native";
 import { Controller, useForm } from "react-hook-form";
 import { TouchableOpacity, View } from "react-native";
-import Icon from "~/components/icon";
 import {
   Card,
   CardContent,
@@ -12,6 +18,7 @@ import {
   CardHeader,
   CardTitle,
 } from "~/components/ui/card";
+import Icon from "~/components/ui/icon";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 import { Separator } from "~/components/ui/separator";
@@ -169,8 +176,10 @@ export default function CustomerPage() {
 
   return (
     <View className="flex flex-1">
-      <View className="p-4 gap-2">
-        <H1 numberOfLines={1}>{customer.firstName} {customer.lastName}</H1>
+      <View className="gap-2 p-4">
+        <H1 numberOfLines={1}>
+          {customer.firstName} {customer.lastName}
+        </H1>
         <Muted>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</Muted>
       </View>
 
@@ -179,12 +188,12 @@ export default function CustomerPage() {
       <View className="flex flex-1 flex-col">
         <TouchableOpacity
           onPress={() => {
-            router.push('/customer/orders')
+            router.push("/customer/orders");
           }}
-          className="border-b border-border px-4 py-8"
+          className="border-border border-b px-4 py-8"
         >
           <View className="flex flex-row items-center gap-4">
-            <Icon name="basket" size={22} />
+            <Icon as={ShoppingBasket} size={22} />
             <Text>My orders</Text>
           </View>
         </TouchableOpacity>
@@ -193,32 +202,32 @@ export default function CustomerPage() {
 
         <TouchableOpacity
           onPress={() => {}}
-          className="border-b border-border px-4 py-8"
+          className="border-border border-b px-4 py-8"
         >
           <View className="flex flex-row items-center gap-4">
-            <Icon name="people" size={22} />
+            <Icon as={User} size={22} />
             <Text>Account details</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
-            router.push('/customer/address')
+            router.push("/customer/address");
           }}
-          className="border-b border-border px-4 py-8"
+          className="border-border border-b px-4 py-8"
         >
           <View className="flex flex-row items-center gap-4">
-            <Icon name="home" size={22} />
+            <Icon as={Home} size={22} />
             <Text>Address</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
-            router.push('/customer/payments')
+            router.push("/customer/payments");
           }}
-          className="border-b border-border px-4 py-8"
+          className="border-border border-b px-4 py-8"
         >
           <View className="flex flex-row items-center gap-4">
-            <Icon name="card" size={22} />
+            <Icon as={CreditCard} size={22} />
             <Text>Payments</Text>
           </View>
         </TouchableOpacity>
@@ -226,7 +235,7 @@ export default function CustomerPage() {
 
       <TouchableOpacity onPress={handleLogOut} className="px-4 py-8">
         <View className="flex flex-row items-center gap-4">
-          <Icon name="exit" size={22} className="text-destructive" />
+          <Icon as={LogOut} size={22} className="text-destructive" />
           <Text className="text-destructive">Log out</Text>
         </View>
       </TouchableOpacity>

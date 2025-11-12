@@ -3,7 +3,12 @@ import { ComponentPropsWithoutRef } from "react";
 import { withUniwind } from "uniwind";
 import { cn } from "~/lib/utils";
 
-const StyledIcon = withUniwind(Ionicons);
+const StyledIcon = withUniwind(Ionicons, {
+  color: {
+    fromClassName: 'className',
+    styleProperty: 'color'
+  }
+});
 
 export default function Icon({
   size = 18,

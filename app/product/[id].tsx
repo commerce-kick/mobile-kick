@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { ShopperBasketsTypes } from "commerce-sdk-isomorphic";
 import { router, useLocalSearchParams } from "expo-router";
+import { Heart, ShoppingBag } from "lucide-react-native";
 import { useEffect, useState } from "react";
 import {
   ActivityIndicator,
@@ -14,9 +15,9 @@ import EmptyHero from "~/components/commerce/empty-hero";
 import ProductRecomendations from "~/components/commerce/product-recomandations";
 import { ProductVariations } from "~/components/commerce/product-variations";
 import { QuantitySelector } from "~/components/commerce/quantity-selector";
-import Icon from "~/components/icon";
 import Loading from "~/components/loading";
 import { Button } from "~/components/ui/button";
+import Icon from "~/components/ui/icon";
 import { Separator } from "~/components/ui/separator";
 import { Text } from "~/components/ui/text";
 import { H1, H3 } from "~/components/ui/typography";
@@ -80,10 +81,10 @@ const Price = ({
     <View className={cn("flex-row items-center gap-2", className)}>
       {promotion?.promotionalPrice ? (
         <>
-          <Text className="text-2xl font-bold text-destructive">
+          <Text className="text-destructive text-2xl font-bold">
             {formatPrice(promotion.promotionalPrice)}
           </Text>
-          <Text className="text-lg text-muted-foreground line-through">
+          <Text className="text-muted-foreground text-lg line-through">
             {formatPrice(price)}
           </Text>
         </>
@@ -236,7 +237,7 @@ export default function ProductPage() {
 
         <View className="gap-3 p-4" style={{ paddingBottom: 120 }}>
           <View className="flex flex-row items-center justify-between gap-4">
-            <H1 className="flex-1 text-2xl font-bold leading-tight">
+            <H1 className="flex-1 text-2xl leading-tight font-bold">
               {product.name}
             </H1>
             <TouchableOpacity
@@ -249,12 +250,8 @@ export default function ProductPage() {
               )}
             >
               <Icon
-                name={wishListed ? "heart" : "heart-outline"}
-                className={
-                  wishListed
-                    ? "text-destructive-foreground"
-                    : "text-muted-foreground"
-                }
+                as={Heart}
+                className={cn("text-white", wishListed && "fill-white")}
                 size={20}
               />
             </TouchableOpacity>
@@ -291,7 +288,7 @@ export default function ProductPage() {
               {product.longDescription.replace(/<[^>]*>/g, "")}
             </Text>
           ) : (
-            <Text className="text-sm text-muted-foreground">
+            <Text className="text-muted-foreground text-sm">
               No detailed description available for this product.
             </Text>
           )}
@@ -305,7 +302,7 @@ export default function ProductPage() {
 
       <AvoidingBlur
         bottom={0}
-        className="pb-safe flex flex-row gap-4 px-4 pt-4"
+        className="pb-safe-offset-4 flex flex-row gap-4 px-4 pt-4"
       >
         {/* Add to Cart Button */}
         <Price
@@ -323,9 +320,13 @@ export default function ProductPage() {
             {addToBasketMutation.isPending ? (
               <ActivityIndicator size="small" color="white" />
             ) : (
-              <Icon name="bag" className="text-primary-foreground" size={20} />
+              <Icon
+                as={ShoppingBag}
+                className="text-primary-foreground"
+                size={20}
+              />
             )}
-            <Text className="font-medium text-primary-foreground">
+            <Text className="text-primary-foreground font-medium">
               {isInStock ? "Add to Cart" : "Out of Stock"}
             </Text>
           </View>

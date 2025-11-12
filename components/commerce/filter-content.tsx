@@ -1,10 +1,11 @@
 import type { ShopperSearchTypes } from "commerce-sdk-isomorphic"
+import { EllipsisVertical, RotateCcw, X } from "lucide-react-native"
 import { ScrollView, TouchableOpacity, View } from "react-native"
-import Icon from "~/components/icon"
 import { Badge } from "~/components/ui/badge"
 import { Button } from "~/components/ui/button"
 import { Card, CardContent } from "~/components/ui/card"
 import { Checkbox } from "~/components/ui/checkbox"
+import Icon from "~/components/ui/icon"
 import { Separator } from "~/components/ui/separator"
 import { Skeleton } from "~/components/ui/skeleton"
 import { Text } from "~/components/ui/text"
@@ -116,7 +117,7 @@ const FiltersContent = ({
         <CardContent className="p-4">
           <View className="gap-3">
             <View className="flex-row items-center gap-2">
-              <Icon name="options" className="text-foreground" size={16} />
+              <Icon as={EllipsisVertical} className="text-foreground" size={16} />
               <H3 className="font-medium">Sort by</H3>
             </View>
 
@@ -186,7 +187,7 @@ const FiltersContent = ({
                       >
                         <Text className="text-xs">{getFilterDisplayName(attributeId, value)}</Text>
                         <View className="ml-1 rounded-full bg-secondary-foreground/20 p-1">
-                          <Icon name="close" size={10} className="text-secondary-foreground" />
+                          <Icon as={X} size={10} className="text-secondary-foreground" />
                         </View>
                       </TouchableOpacity>
                     </Badge>
@@ -255,7 +256,7 @@ const FiltersContent = ({
       {/* Reset Button */}
       <Button variant="outline" className="w-full shadow-sm" onPress={handleClearFilters}>
         <View className="flex-row items-center gap-2">
-          <Icon name="refresh" className="text-foreground" size={16} />
+          <Icon as={RotateCcw} className="text-foreground" size={16} />
           <Text>Reset All Filters</Text>
         </View>
       </Button>
