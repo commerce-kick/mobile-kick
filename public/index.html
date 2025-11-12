@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="%LANG_ISO_CODE%">
+  <head>
+    <meta charset="utf-8" />
+    <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>%WEB_TITLE%</title>
+
+    <style id="expo-reset">
+      /* These styles make the body full-height */
+      html,
+      body {
+        height: 100%;
+      }
+      /* These styles disable body scrolling if you are using <ScrollView> */
+      body {
+        overflow: hidden;
+      }
+      /* These styles make the root element full-height */
+      #root {
+        display: flex;
+        height: 100%;
+        flex: 1;
+      }
+    </style>
+    <style id="bootsplash-style">
+      #bootsplash {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #ffffff;
+      }
+      #bootsplash-logo {
+        content: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwMF8xMDlfOCkiPgo8cGF0aCBkPSJNNjMuOTAyMyAxMTUuNzU4VjE5MkgwVjExNS43NThINjMuOTAyM1pNNjMuOTAyMyA3Ni4yNDEySDBWMEg2My45MDIzVjc2LjI0MTJaTTE5MiA2My45MDIzSDEyOC4wOThWNzYuMjQxMkg4OC41ODExVjQ4LjE4MzZIMTI4LjA5OFYwSDE5MlY2My45MDIzWk0xMjguMDk4IDEyOC4wOThIMTkyVjE5MkgxMjguMDk4VjE0My45NjNIODguNTgxMVYxMTUuNzU4SDEyOC4wOThWMTI4LjA5OFoiIGZpbGw9IiNGQzFENTMiLz4KPHBhdGggZD0iTTEwLjcyODUgOTAuNzYyN0gxMi4wMjczVjkzLjM2MDRIOS40Mjk2OVY5Mi4wNjE1SDYuODMzMDFWOTMuMzYwNEg1LjUzNDE4Vjk4LjU1MzdINi44MzMwMVY5OS44NTI1SDkuNDI5NjlWOTguNTUzN0gxMi4wMjczVjEwMS4xNTFIMTAuNzI4NVYxMDIuNDQ5SDQuMjM2MzNWMTAxLjE1MUgyLjkzNzVWOTAuNzYyN0g0LjIzNjMzVjg5LjQ2NDhIMTAuNzI4NVY5MC43NjI3Wk0zNS42NjMxIDkwLjc2MjdIMzYuOTYxOVYxMDEuMTUxSDM1LjY2MzFWMTAyLjQ0OUgyOS4xNzA5VjEwMS4xNTFIMjcuODcyMVY5MC43NjI3SDI5LjE3MDlWODkuNDY0OEgzNS42NjMxVjkwLjc2MjdaTTU1LjQwMzMgOTAuNzYyN0g1Ni43MDIxVjkyLjA2MTVINTguMDAxVjkzLjM2MDRINTkuMjk4OFY5Mi4wNjE1SDYwLjU5NzdWOTAuNzYyN0g2MS44OTY1Vjg5LjQ2NDhINjQuNDkzMlYxMDIuNDQ5SDYxLjg5NjVWOTQuNjU4Mkg2MC41OTc3Vjk1Ljk1N0g1OS4yOTg4Vjk3LjI1NTlINTguMDAxVjk1Ljk1N0g1Ni43MDIxVjk0LjY1ODJINTUuNDAzM1YxMDIuNDQ5SDUyLjgwNjZWODkuNDY0OEg1NS40MDMzVjkwLjc2MjdaTTgyLjk0MjQgOTAuNzYyN0g4NC4yNDAyVjkyLjA2MTVIODUuNTM5MVY5My4zNjA0SDg2LjgzNzlWOTIuMDYxNUg4OC4xMzU3VjkwLjc2MjdIODkuNDM0NlY4OS40NjQ4SDkyLjAzMTJWMTAyLjQ0OUg4OS40MzQ2Vjk0LjY1ODJIODguMTM1N1Y5NS45NTdIODYuODM3OVY5Ny4yNTU5SDg1LjUzOTFWOTUuOTU3SDg0LjI0MDJWOTQuNjU4Mkg4Mi45NDI0VjEwMi40NDlIODAuMzQ0N1Y4OS40NjQ4SDgyLjk0MjRWOTAuNzYyN1pNMTE1LjY3NSA5Mi4wNjE1SDExMC40OFY5NC42NTgySDExNC4zNzZWOTcuMjU1OUgxMTAuNDhWOTkuODUyNUgxMTUuNjc1VjEwMi40NDlIMTA3Ljg4NFY4OS40NjQ4SDExNS42NzVWOTIuMDYxNVpNMTM5LjMwOCA5MC43NjI3SDE0MC42MDVWOTUuOTU3SDEzOS4zMDhWOTcuMjU1OUgxNDAuNjA1VjEwMi40NDlIMTM4LjAwOVY5OC41NTM3SDEzNC4xMTNWMTAyLjQ0OUgxMzEuNTE3Vjg5LjQ2NDhIMTM5LjMwOFY5MC43NjI3Wk0xNjQuMjQyIDkwLjc2MjdIMTY1LjU0VjkzLjM2MDRIMTYyLjk0M1Y5Mi4wNjE1SDE2MC4zNDdWOTMuMzYwNEgxNTkuMDQ4Vjk4LjU1MzdIMTYwLjM0N1Y5OS44NTI1SDE2Mi45NDNWOTguNTUzN0gxNjUuNTRWMTAxLjE1MUgxNjQuMjQyVjEwMi40NDlIMTU3Ljc0OVYxMDEuMTUxSDE1Ni40NTFWOTAuNzYyN0gxNTcuNzQ5Vjg5LjQ2NDhIMTY0LjI0MlY5MC43NjI3Wk0xODkuMTc3IDEwMi40NDlIMTgxLjM4NlY4OS40NjQ4SDE4OS4xNzdWOTIuMDYxNUgxODMuOTgyVjk0LjY1ODJIMTg3Ljg3OFY5Ny4yNTU5SDE4My45ODJWOTkuODUyNUgxODkuMTc3VjEwMi40NDlaTTMxLjc2NzYgOTMuMzYwNEgzMC40Njg4Vjk4LjU1MzdIMzEuNzY3NlY5OS44NTI1SDMzLjA2NjRWOTguNTUzN0gzNC4zNjQzVjkzLjM2MDRIMzMuMDY2NFY5Mi4wNjE1SDMxLjc2NzZWOTMuMzYwNFpNMTM0LjExMyA5NS45NTdIMTM4LjAwOVY5Mi4wNjE1SDEzNC4xMTNWOTUuOTU3WiIgZmlsbD0iI0ZDMUQ1MyIvPgo8L2c+CjxkZWZzPgo8Y2xpcFBhdGggaWQ9ImNsaXAwXzEwOV84Ij4KPHJlY3Qgd2lkdGg9IjE5MiIgaGVpZ2h0PSIxOTIiIGZpbGw9IndoaXRlIi8+CjwvY2xpcFBhdGg+CjwvZGVmcz4KPC9zdmc+Cg==");
+        width: 100px;
+        height: 100px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <noscript> You need to enable JavaScript to run this app. </noscript>
+
+    <div id="root"></div>
+    <div id="bootsplash">
+      <div id="bootsplash-logo"></div>
+    </div>
+  </body>
+</html>

@@ -4,7 +4,7 @@
     "slug": "mob-kit",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/bootsplash/logo.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -18,11 +18,7 @@
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
       },
-      "icon": {
-        "dark": "./assets/images/ios-dark.png",
-        "light": "./assets/images/ios-light.png",
-        "tinted": "./assets/images/ios-tinted.png"
-      }
+      "icon": "./assets/app.icon"
     },
     "android": {
       "adaptiveIcon": {
@@ -38,19 +34,7 @@
     },
     "plugins": [
       "expo-router",
-      [
-        "expo-splash-screen",
-        {
-          "backgroundColor": "#f1f1f1",
-          "image": "./assets/images/splash-icon-light.png",
-          "dark": {
-            "image": "./assets/images/splash-icon-dark.png",
-            "backgroundColor": "#000000"
-          },
-          "imageWidth": 200
-        }
-      ],
-      "@bacons/apple-targets",
+      ["react-native-bootsplash", { "assetsDir": "assets/bootsplash" }],
       "expo-font",
       "expo-web-browser"
     ],
@@ -61,23 +45,7 @@
     "extra": {
       "router": {},
       "eas": {
-        "build": {
-          "experimental": {
-            "ios": {
-              "appExtensions": [
-                {
-                  "bundleIdentifier": "com.fervillanuevas.mob-kit.widget",
-                  "targetName": "widget",
-                  "entitlements": {
-                    "com.apple.security.application-groups": [
-                      "group.fervillanuevas.data"
-                    ]
-                  }
-                }
-              ]
-            }
-          }
-        },
+        "build": {},
         "projectId": "aaaaaaaaaaaaaaaaaaaaaaaaaa"
       }
     }

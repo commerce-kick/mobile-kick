@@ -16,16 +16,17 @@ import {
   useQueries,
 } from "@tanstack/react-query";
 import { StatusBar } from "expo-status-bar";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { Platform, useColorScheme } from "react-native";
 import { salesforceStore$ } from "~/integrations/salesforce/store";
 import { NAV_THEME } from "~/lib/constants";
 
 import { KeyboardProvider } from "react-native-keyboard-controller";
 
-import { SplashScreen, Stack } from "expo-router";
+import { Stack } from "expo-router";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { toast, Toaster } from "sonner-native";
+import { AnimatedBootSplash } from "~/components/bootsplash";
 import { getBasketQueryOptions } from "~/integrations/salesforce/options/basket";
 import { getCustomerQueryOptions } from "~/integrations/salesforce/options/customer";
 
@@ -60,9 +61,9 @@ declare module "@tanstack/react-query" {
   }
 }
 
-SplashScreen.preventAutoHideAsync();
-
 const RootComponent = () => {
+  const [visible, setVisible] = useState(true);
+
   const [customer, basket] = useQueries({
     queries: [getCustomerQueryOptions(), getBasketQueryOptions()],
   });
@@ -70,7 +71,7 @@ const RootComponent = () => {
   useEffect(() => {
     const hide = async () => {
       if (!customer.isLoading && !basket.isLoading) {
-        await SplashScreen.hideAsync();
+        setVisible(false);
       }
     };
 
@@ -81,18 +82,25 @@ const RootComponent = () => {
     /* Main Stack, all other routes will be pushed on top, like product */
   }
   return (
-    <Stack>
-      {/* (tabs)/index file, App entry point, see expo for reference */}
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      <Stack.Screen name="(checkout)" options={{ title: "" }} />
-    </Stack>
+    <>
+      <Stack>
+        {/* (tabs)/index file, App entry point, see expo for reference */}
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="(checkout)" options={{ title: "" }} />
+      </Stack>
+      {visible && (
+        <AnimatedBootSplash
+          onAnimationEnd={() => {
+            setVisible(false);
+          }}
+        />
+      )}
+    </>
   );
 };
 
 export default function RootLayout() {
-  const hasMounted = useRef(false);
   const schema = useColorScheme();
-  const [isColorSchemeLoaded, setIsColorSchemeLoaded] = useState(false);
 
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -121,23 +129,6 @@ export default function RootLayout() {
     }),
   });
 
-  useIsomorphicLayoutEffect(() => {
-    if (hasMounted.current) {
-      return;
-    }
-
-    if (Platform.OS === "web") {
-      // Adds the background color to the html element to prevent white background on overscroll.
-      document.documentElement.classList.add("bg-background");
-    }
-    setIsColorSchemeLoaded(true);
-    hasMounted.current = true;
-  }, []);
-
-  if (!isColorSchemeLoaded) {
-    return null;
-  }
-
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <KeyboardProvider>
@@ -145,6 +136,7 @@ export default function RootLayout() {
           <StatusBar style="auto" />
           <QueryClientProvider client={queryClient}>
             <RootComponent />
+
             <Toaster />
           </QueryClientProvider>
         </ThemeProvider>

@@ -4,11 +4,9 @@ import HorizontalProducts from "~/components/commerce/horizontal-products";
 import { H1, H3 } from "~/components/ui/typography";
 import getProductRecsQueryOptions from "~/integrations/salesforce/options/einstein";
 
-import { ExtensionStorage } from "@bacons/apple-targets";
 import { DrawerActions } from "@react-navigation/native";
 import { router, useNavigation } from "expo-router";
 import { Heart } from "lucide-react-native";
-import { useEffect } from "react";
 import { PageRenderer } from "~/components/experience/page-render";
 import Loading from "~/components/loading";
 import { Button } from "~/components/ui/button";
@@ -16,12 +14,6 @@ import Icon from "~/components/ui/icon";
 import { Text } from "~/components/ui/text";
 import useRootCategories from "~/hooks/use-root-categories";
 import { getPageQueryOptions } from "~/integrations/salesforce/options/experience";
-
-// Create a storage object with the App Group.
-const storage = new ExtensionStorage(
-  // Your app group identifier. Should match the values in the app.json and expo-target.config.json.
-  "group.fervillanuevas.data",
-);
 
 export default function Index() {
   const navigation = useNavigation();
@@ -39,13 +31,6 @@ export default function Index() {
       pageId: "homepage-example",
     }),
   );
-
-  useEffect(() => {
-    if (data) {
-      storage.set("recommendations", JSON.stringify(data));
-      ExtensionStorage.reloadWidget();
-    }
-  }, [data]);
 
   if (isLoading) {
     return <Loading />;
